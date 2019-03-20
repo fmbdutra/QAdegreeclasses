@@ -12,7 +12,7 @@ import org.junit.runners.Suite;
  * @author marcelo.soares
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({CalculadoraTest.class, PessoaTest.class})
+@Suite.SuiteClasses({CalculadoraTest.class, PessoaTest.class, BancoTest.class,  CalendarioTest.class, TextoTest.class})
 public class TestSuite {    
     
 }
