@@ -4,15 +4,20 @@ package exercicio;
 
 public class Pessoa {
     
-    private String nome;
-    private String endereco;
-    private String numeroEndereco;
-    private String telefone;
-    private String dddTelefone;
-    private String dataNascimentoDia;
-    private String dataNascimentoMes;
-    private String dataNascimentoAno;
-    private String sexo;    
+//    private String nome;
+//    private String endereco;
+//    private String numeroEndereco;
+//    private String telefone;
+//    private String dddTelefone;
+//    private String dataNascimentoDia;
+//    private String dataNascimentoMes;
+//    private String dataNascimentoAno;
+//    private String sexo;    
+	
+	private String 
+			nome, endereco, numeroEndereco, telefone, 
+			dddTelefone, dataNascimentoDia, 
+			dataNascimentoMes, dataNascimentoAno, sexo;
 
 
     public String getNome() {
