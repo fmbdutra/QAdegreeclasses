@@ -6,8 +6,8 @@
 package exercicio;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -15,21 +15,33 @@ import static org.junit.Assert.*;
  */
 public class ValidatorPessoaTest {
     
-   
+	Pessoa pessoa;
+	ValidatorPessoa validator;
+	
+	@Before
+	public void setUp(){
+		this.validator = new ValidatorPessoa();
+		this.pessoa = new Pessoa();
+	}
+	
     @Test
-    public void testvalidaNomeOk(){
-        ValidatorPessoa validator = new ValidatorPessoa();
-        Pessoa pessoa = new Pessoa();
+    public void testeValidaNomeOk(){   
         pessoa.setNome("teste");
         Assert.assertTrue(validator.validar(pessoa));
     }
     
     @Test
-    public void testvalidaNomeError(){
-        ValidatorPessoa validator = new ValidatorPessoa();
-        Pessoa pessoa = new Pessoa();
+    public void testeValidaNomeErroVazio(){
         pessoa.setNome("");
         Assert.assertFalse(validator.validar(pessoa));
     }
     
+    @Test
+    public void testeValidaNomeErroTamanho(){
+        
+    	pessoa.setNome("aaaaaaaaaa"
+    			+ "aaaaaaaaaa"
+    			+ "aaaaaaaaaaaaa");
+        Assert.assertFalse(validator.validar(pessoa));
+    }    
 }
