@@ -24,7 +24,7 @@ public class ValidatorPessoa {
 			ret = false;
 
 		} else if (!eNumber(pessoa.getDddTelefone()) 
-				&& (pessoa.getDddTelefone().length() < 1 || pessoa.getDddTelefone().length() > 2)){
+				&& (pessoa.getDddTelefone().length() != 2)){
 
 			ret = false;
 			
