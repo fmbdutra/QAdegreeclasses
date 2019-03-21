@@ -138,24 +138,29 @@ public class ValidatorPessoaTest {
 	
 	@Test 
 	public void testeValidaNascimentoDiaOk() {
-		pessoa.setTelefone("27");
+		pessoa.setDataNascimentoDia("27");
 		
 		assertTrue(validator.validar(pessoa));
 	}
 	
 	@Test 
     public void testeValidaNascimentoDiaErroTamanho() {
-		pessoa.setTelefone("051");
+		pessoa.setDataNascimentoDia("051");
 		
     	assertFalse(validator.validar(pessoa));
     }
 	
 	@Test
 	public void testeValidaNascimentoDiaErroNaoNumero() {
-		pessoa.setTelefone("ab");
+		pessoa.setDataNascimentoDia("ab");
 		
     	assertFalse(validator.validar(pessoa));
     }
+	
+//	@Test
+//	public void testeValidaDiaErroMaior30() {
+//		
+//	}
 	
 	
 	
