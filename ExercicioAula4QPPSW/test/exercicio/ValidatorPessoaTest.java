@@ -5,10 +5,13 @@
  */
 package exercicio;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -16,19 +19,17 @@ import static org.junit.Assert.*;
  */
 public class ValidatorPessoaTest {
 
-	Pessoa pessoa;
-	ValidatorPessoa validator;
-
+	private Pessoa pessoa = new Pessoa();
+	private ValidatorPessoa validator = new ValidatorPessoa();
+	
 	@Before
-	public void setUp() {
-		this.validator = new ValidatorPessoa();
-		this.pessoa = new Pessoa();
+	public void setUp() {		
 	}
 
 	@Test
 	public void testeValidaNomeOk() {
-		pessoa.setNome("teste");
-		Assert.assertTrue(validator.validar(pessoa));
+		this.pessoa.setNome("teste");
+		Assert.assertTrue(this.validator.validar(this.pessoa));
 	}
 
 	@Test
@@ -112,4 +113,10 @@ public class ValidatorPessoaTest {
     	
     	assertFalse(validator.validar(pessoa));
 	}
+//	
+//	@Test
+//	public void testeValida
+	
+	
+	
 }
