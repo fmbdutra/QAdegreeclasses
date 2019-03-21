@@ -173,13 +173,6 @@ public class ValidatorPessoaTest {
 		assertTrue(validator.validar(pessoa));
 	}
 	
-	@Test 
-    public void testeValidaNascimentoMesErroTamanho() {
-		pessoa.setDataNascimentoDia("022");
-		
-    	assertFalse(validator.validar(pessoa));
-    }
-	
 	@Test
 	public void testeValidaNascimentoMesErroNaoNumero() {
 		pessoa.setDataNascimentoDia("ab");
@@ -188,12 +181,39 @@ public class ValidatorPessoaTest {
     }
 	
 	@Test
-	public void testeValidaDiaEntre1e12() {
+	public void testeValidaMesEntre1e12() {
 		pessoa.setDataNascimentoDia("13");
 		
 		assertFalse(validator.validar(pessoa));
 	}
+	//----------------------
+	//Teste Ano Nascimento
 	
+	@Test 
+	public void testeValidaNascimentoAnoOk() {
+		pessoa.setDataNascimentoDia("1985");		
+		assertTrue(validator.validar(pessoa));
+	}
 	
+	@Test
+	public void testeValidaNascimentoAnoErroNaoNumero() {
+		pessoa.setDataNascimentoDia("abaaa");
+		
+    	assertFalse(validator.validar(pessoa));
+    }
 	
+	@Test
+	public void testeValidaDiaAnterior1900() {
+		pessoa.setDataNascimentoDia("1800");
+		
+		assertFalse(validator.validar(pessoa));
+	}
+	
+	@Test
+	public void testeValidaDiaMaiorAnoAtual() {
+		pessoa.setDataNascimentoDia("2060");
+		// Ano atual = 2019
+		
+		assertFalse(validator.validar(pessoa));
+	}	
 }
