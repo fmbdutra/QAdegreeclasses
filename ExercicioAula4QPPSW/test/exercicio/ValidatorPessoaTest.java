@@ -22,8 +22,23 @@ public class ValidatorPessoaTest {
 	private Pessoa pessoa = new Pessoa();
 	private ValidatorPessoa validator = new ValidatorPessoa();
 	
+	private Pessoa criaPessoa() {
+		pessoa.setNome("nome");
+		pessoa.setDataNascimentoAno("1995");
+		pessoa.setDataNascimentoDia("25");
+		pessoa.setDataNascimentoMes("02");
+		pessoa.setDddTelefone("51");
+		pessoa.setEndereco("Avenida Testes");
+		pessoa.setNumeroEndereco("532");
+		pessoa.setSexo("m");
+		pessoa.setTelefone("33406767");
+				
+		return pessoa;
+	}
+	
 	@Before
-	public void setUp() {		
+	public void setUp() {
+		criaPessoa();
 	}
 
 	@Test
@@ -113,9 +128,27 @@ public class ValidatorPessoaTest {
     	
     	assertFalse(validator.validar(pessoa));
 	}
-//	
-//	@Test
-//	public void testeValida
+	
+	@Test 
+	public void testeValidaNascimentoDiaOk() {
+		pessoa.setTelefone("27");
+		
+		assertTrue(validator.validar(pessoa));
+	}
+	
+	@Test 
+    public void testeValidaNascimentoDiaErroTamanho() {
+		pessoa.setTelefone("051");
+		
+    	assertFalse(validator.validar(pessoa));
+    }
+	
+	@Test
+	public void testeValidaNascimentoDiaErroNaoNumero() {
+		pessoa.setTelefone("ab");
+		
+    	assertFalse(validator.validar(pessoa));
+    }
 	
 	
 	
