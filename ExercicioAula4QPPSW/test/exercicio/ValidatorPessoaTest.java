@@ -157,10 +157,12 @@ public class ValidatorPessoaTest {
     	assertFalse(validator.validar(pessoa));
     }
 	
-//	@Test
-//	public void testeValidaDiaErroMaior30() {
-//		
-//	}
+	@Test
+	public void testeValidaDiaEntre1e30() {
+		pessoa.setDataNascimentoDia("51");
+		
+		assertFalse(validator.validar(pessoa));
+	}
 	
 	
 	
