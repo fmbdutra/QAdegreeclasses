@@ -109,8 +109,15 @@ public class ValidatorPessoaTest {
 	}
 	
 	@Test 
-    public void testeValidaDDDErroTamanho() {
+    public void testeValidaDDDErroTamanhoMaior() {
 		pessoa.setTelefone("051");
+		
+    	assertFalse(validator.validar(pessoa));
+    }
+	
+	@Test 
+    public void testeValidaDDDErroTamanhoMenor() {
+		pessoa.setTelefone("1");
 		
     	assertFalse(validator.validar(pessoa));
     }
