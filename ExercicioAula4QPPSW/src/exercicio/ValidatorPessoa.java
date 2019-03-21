@@ -28,18 +28,21 @@ public class ValidatorPessoa {
 
 			ret = false;
 			
-		} else if (pessoa.getDataNascimentoDia().isEmpty() 
+		} else if (pessoa.getDataNascimentoDia().isEmpty()
+				|| !eNumber(pessoa.getDataNascimentoDia())
 				|| (Integer.parseInt(pessoa.getDataNascimentoAno()) < 30
 				|| Integer.parseInt(pessoa.getDataNascimentoAno()) > 30)) {
 
 			ret = false;
 
 		} else if (pessoa.getDataNascimentoMes().isEmpty() 
+				|| !eNumber(pessoa.getDataNascimentoMes())
 				|| (Integer.parseInt(pessoa.getDataNascimentoMes()) < 1
 				|| Integer.parseInt(pessoa.getDataNascimentoMes()) > 12)) {
 			ret = false;
 
 		} else if (pessoa.getDataNascimentoAno().isEmpty() 
+				|| !eNumber(pessoa.getDataNascimentoAno())
 				|| (Integer.parseInt(pessoa.getDataNascimentoAno()) < 1900
 				|| Integer.parseInt(pessoa.getDataNascimentoAno()) > LocalDateTime.now().getYear())) {
 			ret = false;
