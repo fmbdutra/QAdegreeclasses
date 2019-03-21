@@ -5,12 +5,9 @@
  */
 package exercicio;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -19,45 +16,41 @@ import org.junit.Test;
  */
 public class ValidatorPessoaTest {
 
-	private Pessoa pessoa = new Pessoa();
-	private ValidatorPessoa validator = new ValidatorPessoa();
+	private Pessoa pessoa;
+	private ValidatorPessoa validator;
 	
 	private Pessoa criaPessoa() {
+		pessoa = new Pessoa();
 		pessoa.setNome("nome");
 		pessoa.setDataNascimentoAno("1995");
 		pessoa.setDataNascimentoDia("25");
 		pessoa.setDataNascimentoMes("02");
 		pessoa.setDddTelefone("51");
-		pessoa.setEndereco("Avenida Testes");
-		pessoa.setNumeroEndereco("532");
-		pessoa.setSexo("m");
-		pessoa.setTelefone("33406767");
+		this.pessoa.setEndereco("Avenida Testes");
+		this.pessoa.setNumeroEndereco("532");
+		this.pessoa.setSexo("m");
+		this.pessoa.setTelefone("33406767");
 				
-		return pessoa;
+		return this.pessoa;
 	}
 	
-	@Before
-	public void setUp() {
-		criaPessoa();
-	}
-
 	@Test
 	public void testeValidaNomeOk() {
 		this.pessoa.setNome("teste");
-		Assert.assertTrue(this.validator.validar(this.pessoa));
+		assertTrue(this.validator.validar(this.pessoa));
 	}
 
 	@Test
 	public void testeValidaNomeErroVazio() {
 		pessoa.setNome("");
-		Assert.assertFalse(validator.validar(pessoa));
+		assertFalse(validator.validar(pessoa));
 	}
 
 	@Test
 	public void testeValidaNomeErroTamanho() {
 
 		pessoa.setNome("aaaaaaaaaa" + "aaaaaaaaaa" + "aaaaaaaaaaaaa");
-		Assert.assertFalse(validator.validar(pessoa));
+		assertFalse(validator.validar(pessoa));
 	}
 
 	@Test
@@ -191,8 +184,8 @@ public class ValidatorPessoaTest {
 	
 	@Test 
 	public void testeValidaNascimentoAnoOk() {
-		pessoa.setDataNascimentoDia("1985");		
-		assertTrue(validator.validar(pessoa));
+		this.pessoa.setDataNascimentoDia("1985");		
+		assertTrue(this.validator.validar(this.pessoa));
 	}
 	
 	@Test
