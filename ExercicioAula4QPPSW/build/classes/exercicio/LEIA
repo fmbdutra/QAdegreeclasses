@@ -1,7 +1,7 @@
 Fazer as validações e casos de teste, conforme as regras abaixo: 
-ok 1. campo nome não pode estar em branco e tamanho máximo é 30 caracteres
-ok 2. campo endereco não pode estar em branco e tamanho máximo é 50 caracteres
-ok 3. campo telefone pode estar em branco e tamanho máximo é 20 caracteres
+1. campo nome não pode estar em branco e tamanho máximo é 30 caracteres
+2. campo endereco não pode estar em branco e tamanho máximo é 50 caracteres
+3. campo telefone pode estar em branco e tamanho máximo é 20 caracteres
 ok 4. campo DDD pode estar em branco e acetar somente números com no máximo 2 digitos.
 ok 5. campo dataNascimentoDia não pode estar em branco, aceitar somente números entre 1 e 30
 ok 6. campo dataNascimentoMes não pode estar em branco, aceitar somente números entre 1 e 12

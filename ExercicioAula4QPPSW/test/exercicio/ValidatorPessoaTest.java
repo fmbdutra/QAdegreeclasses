@@ -65,6 +65,26 @@ public class ValidatorPessoaTest {
     	assertFalse(validator.validar(pessoa));
 	}
 	
+	@Test 
+	public void testeValidaTelefoneOk() {
+		pessoa.setTelefone("33416560");
+		
+		assertTrue(validator.validar(pessoa));
+	}
+	
+	@Test 
+    public void testeValidaTelefoneErroTamanho() {
+		pessoa.setTelefone("3488923748327984729847298");
+    	assertFalse(validator.validar(pessoa));
+    }
+	
+	@Test
+	public void testeValidaTelefoneErroVazio() {
+		pessoa.setTelefone("");
+    	
+    	assertFalse(validator.validar(pessoa));
+	}
+	
 	
 
 }
