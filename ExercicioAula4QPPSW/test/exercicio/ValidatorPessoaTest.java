@@ -163,6 +163,36 @@ public class ValidatorPessoaTest {
 		
 		assertFalse(validator.validar(pessoa));
 	}
+	//---------------
+	//Teste Nascimento Mes
+	
+	@Test 
+	public void testeValidaNascimentoMesOk() {
+		pessoa.setDataNascimentoDia("09");
+		
+		assertTrue(validator.validar(pessoa));
+	}
+	
+	@Test 
+    public void testeValidaNascimentoMesErroTamanho() {
+		pessoa.setDataNascimentoDia("022");
+		
+    	assertFalse(validator.validar(pessoa));
+    }
+	
+	@Test
+	public void testeValidaNascimentoMesErroNaoNumero() {
+		pessoa.setDataNascimentoDia("ab");
+		
+    	assertFalse(validator.validar(pessoa));
+    }
+	
+	@Test
+	public void testeValidaDiaEntre1e12() {
+		pessoa.setDataNascimentoDia("13");
+		
+		assertFalse(validator.validar(pessoa));
+	}
 	
 	
 	
