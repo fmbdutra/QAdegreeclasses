@@ -23,7 +23,7 @@ public class ValidatorPessoa {
 		} else if (pessoa.getTelefone().equals("") || pessoa.getTelefone().length() > 20) {
 			ret = false;
 
-		} else if (pessoa.getDddTelefone().length() < 2 || pessoa.getDddTelefone().length() > 2) {
+		} else if (pessoa.getDddTelefone().length() < 1 || pessoa.getDddTelefone().length() > 2) {
 			ret = false;
 
 		} else if (pessoa.getDataNascimentoDia().isEmpty() || (Integer.parseInt(pessoa.getDataNascimentoAno()) < 1
