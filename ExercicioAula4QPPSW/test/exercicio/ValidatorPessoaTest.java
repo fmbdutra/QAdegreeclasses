@@ -5,8 +5,10 @@
  */
 package exercicio;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,197 +18,207 @@ import org.junit.Test;
  */
 public class ValidatorPessoaTest {
 
-	private Pessoa pessoa;
-	private ValidatorPessoa validator;
-	
+	public Pessoa p, pessoaPerfeita;
+	public ValidatorPessoa v;
+
 	private Pessoa criaPessoa() {
-		pessoa = new Pessoa();
-		pessoa.setNome("nome");
-		pessoa.setDataNascimentoAno("1995");
-		pessoa.setDataNascimentoDia("25");
-		pessoa.setDataNascimentoMes("02");
-		pessoa.setDddTelefone("51");
-		this.pessoa.setEndereco("Avenida Testes");
-		this.pessoa.setNumeroEndereco("532");
-		this.pessoa.setSexo("m");
-		this.pessoa.setTelefone("33406767");
-				
-		return this.pessoa;
+		pessoaPerfeita = new Pessoa();
+		pessoaPerfeita.setNome("joao");
+		pessoaPerfeita.setEndereco("rua x");
+		pessoaPerfeita.setDataNascimentoDia("10");
+		pessoaPerfeita.setDataNascimentoAno("2000");
+		pessoaPerfeita.setDataNascimentoMes("12");
+		pessoaPerfeita.setDddTelefone("51");
+		pessoaPerfeita.setTelefone("1234567");
+		pessoaPerfeita.setSexo("m");
+		pessoaPerfeita.setNumeroEndereco("123");
+		return pessoaPerfeita;
 	}
 	
+	@Before
+	public void setUp() {
+		v = new ValidatorPessoa();
+		p = criaPessoa();
+	}
+
+
+	@Test
+	public void testePessoaPerfeita() {
+		Assert.assertTrue(v.validar(p));
+	}
+
 	@Test
 	public void testeValidaNomeOk() {
-		this.pessoa.setNome("teste");
-		assertTrue(this.validator.validar(this.pessoa));
+		p.setNome("Fabiano");
+		assertTrue(v.validar(p));
 	}
 
 	@Test
 	public void testeValidaNomeErroVazio() {
-		pessoa.setNome("");
-		assertFalse(validator.validar(pessoa));
+		p.setNome("");
+		assertFalse(v.validar(p));
 	}
 
 	@Test
 	public void testeValidaNomeErroTamanho() {
 
-		pessoa.setNome("aaaaaaaaaa" + "aaaaaaaaaa" + "aaaaaaaaaaaaa");
-		assertFalse(validator.validar(pessoa));
+		p.setNome("aaaaaaaaaa" + "aaaaaaaaaa" + "aaaaaaaaaaaaa");
+		assertFalse(v.validar(p));
 	}
 
 	@Test
 	public void testeValidaEnderecoOk() {
-		pessoa.setEndereco("Av. Aula 10, Faculdade SENAI");
+		p.setEndereco("Av. Aula 10, Faculdade SENAI");
 
-		assertTrue(validator.validar(pessoa));
+		assertFalse(v.validar(p));
 	}
 
-	@Test 
-    public void testeValidaEnderecoErroTamanho() {
-		pessoa.setEndereco("Avenida Aula 10, Faculdade SENAI - Porto Alegre, RS - Brasil");
-    	
-    	assertFalse(validator.validar(pessoa));
-    }
-	
+	@Test
+	public void testeValidaEnderecoErroTamanho() {
+		p.setEndereco("Avenida Aula 10, Faculdade SENAI - Porto Alegre, RS - Brasil");
+
+		assertFalse(v.validar(p));
+	}
+
 	@Test
 	public void testeValidaEnderecoErroVazio() {
-		pessoa.setEndereco("");
-    	
-    	assertFalse(validator.validar(pessoa));
+		p.setEndereco("");
+
+		assertFalse(v.validar(p));
 	}
-	
-	@Test 
+
+	@Test
 	public void testeValidaTelefoneOk() {
-		pessoa.setTelefone("33416560");
-		
-		assertTrue(validator.validar(pessoa));
+		p.setTelefone("33416560");
+		assertTrue(v.validar(p));
 	}
-	
-	@Test 
-    public void testeValidaTelefoneErroTamanho() {
-		pessoa.setTelefone("3488923748327984729847298");
-    	assertFalse(validator.validar(pessoa));
-    }
-	
+
+	@Test
+	public void testeValidaTelefoneErroTamanho() {
+		p.setTelefone("3488923748327984729847298");
+		assertFalse(v.validar(p));
+	}
+
 	@Test
 	public void testeValidaTelefoneErroVazio() {
-		pessoa.setTelefone("");
-    	
-    	assertFalse(validator.validar(pessoa));
+		p.setTelefone("");
+
+		assertFalse(v.validar(p));
 	}
-	
-	@Test 
+
+	@Test
 	public void testeValidaDDDOk() {
-		pessoa.setTelefone("51");
-		
-		assertTrue(validator.validar(pessoa));
+		p.setTelefone("51");
+
+		assertTrue(v.validar(p));
 	}
-	
-	@Test 
-    public void testeValidaDDDErroTamanhoMaior() {
-		pessoa.setTelefone("051");
-		
-    	assertFalse(validator.validar(pessoa));
-    }
-	
-	@Test 
-    public void testeValidaDDDErroTamanhoMenor() {
-		pessoa.setTelefone("1");
-		
-    	assertFalse(validator.validar(pessoa));
-    }
-	
+
+	@Test
+	public void testeValidaDDDErroTamanhoMaior() {
+		p.setTelefone("051");
+
+		assertFalse(v.validar(p));
+	}
+
+	@Test
+	public void testeValidaDDDErroTamanhoMenor() {
+		p.setTelefone("1");
+
+		assertFalse(v.validar(p));
+	}
+
 	@Test
 	public void testeValidaDDDErroNaoNumero() {
-		pessoa.setTelefone("ab");
-		
-    	assertFalse(validator.validar(pessoa));
-    }
-	
+		p.setTelefone("ab");
+
+		assertFalse(v.validar(p));
+	}
+
 	@Test
 	public void testeValidaDDDErroVazio() {
-		pessoa.setTelefone("");
-    	
-    	assertFalse(validator.validar(pessoa));
+		p.setTelefone("");
+
+		assertFalse(v.validar(p));
 	}
-	
-	@Test 
+
+	@Test
 	public void testeValidaNascimentoDiaOk() {
-		pessoa.setDataNascimentoDia("27");
-		
-		assertTrue(validator.validar(pessoa));
+		p.setDataNascimentoDia("27");
+
+		assertTrue(v.validar(p));
 	}
-	
-	@Test 
-    public void testeValidaNascimentoDiaErroTamanho() {
-		pessoa.setDataNascimentoDia("051");
-		
-    	assertFalse(validator.validar(pessoa));
-    }
-	
+
+	@Test
+	public void testeValidaNascimentoDiaErroTamanho() {
+		p.setDataNascimentoDia("051");
+
+		assertFalse(v.validar(p));
+	}
+
 	@Test
 	public void testeValidaNascimentoDiaErroNaoNumero() {
-		pessoa.setDataNascimentoDia("ab");
-		
-    	assertFalse(validator.validar(pessoa));
-    }
-	
+		p.setDataNascimentoDia("ab");
+
+		assertFalse(v.validar(p));
+	}
+
 	@Test
 	public void testeValidaDiaEntre1e30() {
-		pessoa.setDataNascimentoDia("51");
-		
-		assertFalse(validator.validar(pessoa));
+		p.setDataNascimentoDia("51");
+
+		assertFalse(v.validar(p));
 	}
-	//---------------
-	//Teste Nascimento Mes
-	
-	@Test 
+	// ---------------
+	// Teste Nascimento Mes
+
+	@Test
 	public void testeValidaNascimentoMesOk() {
-		pessoa.setDataNascimentoDia("09");
-		
-		assertTrue(validator.validar(pessoa));
+		p.setDataNascimentoDia("09");
+
+		assertTrue(v.validar(p));
 	}
-	
+
 	@Test
 	public void testeValidaNascimentoMesErroNaoNumero() {
-		pessoa.setDataNascimentoDia("ab");
-		
-    	assertFalse(validator.validar(pessoa));
-    }
-	
+		p.setDataNascimentoDia("ab");
+
+		assertFalse(v.validar(p));
+	}
+
 	@Test
 	public void testeValidaMesEntre1e12() {
-		pessoa.setDataNascimentoDia("13");
-		
-		assertFalse(validator.validar(pessoa));
+		p.setDataNascimentoDia("13");
+
+		assertFalse(v.validar(p));
 	}
-	//----------------------
-	//Teste Ano Nascimento
-	
-	@Test 
+	// ----------------------
+	// Teste Ano Nascimento
+
+	@Test
 	public void testeValidaNascimentoAnoOk() {
-		this.pessoa.setDataNascimentoDia("1985");		
-		assertTrue(this.validator.validar(this.pessoa));
+		p.setDataNascimentoDia("1985");
+		assertTrue(v.validar(p));
 	}
-	
+
 	@Test
 	public void testeValidaNascimentoAnoErroNaoNumero() {
-		pessoa.setDataNascimentoDia("abaaa");
-		
-    	assertFalse(validator.validar(pessoa));
-    }
-	
+		p.setDataNascimentoDia("abaaa");
+
+		assertFalse(v.validar(p));
+	}
+
 	@Test
 	public void testeValidaDiaAnterior1900() {
-		pessoa.setDataNascimentoDia("1800");
-		
-		assertFalse(validator.validar(pessoa));
+		p.setDataNascimentoDia("1800");
+
+		assertFalse(v.validar(p));
 	}
-	
+
 	@Test
 	public void testeValidaDiaMaiorAnoAtual() {
-		pessoa.setDataNascimentoDia("2060");
+		p.setDataNascimentoDia("2060");
 		// Ano atual = 2019
-		
-		assertFalse(validator.validar(pessoa));
-	}	
+
+		assertFalse(v.validar(p));
+	}
 }
