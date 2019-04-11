@@ -2,6 +2,7 @@
 import exemplopraticoaula6qppsw.BancoDados;
 import exemplopraticoaula6qppsw.Boleto;
 import exemplopraticoaula6qppsw.Funcionario;
+import exemplopraticoaula6qppsw.validacoes.ValidacaoBoleto;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,25 +18,30 @@ import org.junit.Test;
  * @author fabiano.dutra
  */
 public class BancoDeDadosIntegracaoBoletoTest {
-        private BancoDados banco;
+   
+    public ValidacaoBoleto v;
+    public Boleto b;
     
     @Before
-    public void init(){
-        banco = new BancoDados();
+    public void setUp(){
+        v = new ValidacaoBoleto();
+        b = new Boleto();
+        
+        b.setIdBoleto(1);
+        b.setSacado("Matheus");
+        b.setValor(500);
     }
     
     @Test
     public void testBoletoNaoPodeReceberValoresNegativos(){
-        Boleto b = new Boleto();
-        b.setValor(-20);
-        b.setSacado("Mateus Spaguete");
-        banco.insertBoleto(b);
+//      ValidacaoBoleto v = new ValidacaoBoleto();
+//      Boleto b = new Boleto();
         
-        int id = b.getIdBoleto();
+//      b.setIdBoleto(1);
+//      b.setSacado("Matheus");
+      b.setValor(-50);
         
-        Boleto boletoBanco = banco.buscaBoleto(id);
-        
-        Assert.fail();        
+        Assert.assertFalse(v.Valida(b));
     }
     
     
