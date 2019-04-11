@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author marcelo.soares
+ * @author marcelo.soares and fabiano.dutra
  */
  
 import java.sql.Connection;
@@ -355,21 +355,21 @@ private void conectaBanco() {
         return lista;
     }
     
-     public Pessoa  buscaConta(int id){
+     public Conta  buscaConta(int id){
        
         String sql = "select * from conta where id =" + id;             ;
         System.out.println("sql select " + sql);
-         Pessoa pessoa = null;
+         Conta conta = null;
         try{
         connection.createStatement().execute(sql);
              ResultSet resultSet = connection.createStatement().
                      executeQuery(sql);
           
          while(resultSet.next()){
-            Conta conta = new Conta();
-            conta.setId(resultSet.getInt("id"));
-            conta.setNomeCorrentista(resultSet.getString("nomeCorrentista"));
-            conta.setSaldo(resultSet.getFloat("saldo"));
+            Conta ca = new Conta();
+            ca.setId(resultSet.getInt("id"));
+            ca.setNomeCorrentista(resultSet.getString("nomeCorrentista"));
+            ca.setSaldo(resultSet.getFloat("saldo"));
             
          }    
              
@@ -377,8 +377,114 @@ private void conectaBanco() {
             
         }
         
-        return pessoa;
+        return conta;
     }
      
+    //----------------------------
+     //------------------------------------
+     //----------------------------------------
+    public int insertBoleto(Boleto p){
+        String sql = "insert into boleto (sacado,valor) value('"+
+                p.getSacado()+ "','"+ p.getValor()+ "')";
      
+        System.out.println("sql insert " + sql);
+        
+        try{
+            connection.createStatement().execute(sql);
+             ResultSet resultSet = connection.createStatement().
+                     executeQuery("SELECT LAST_INSERT_ID()");
+            if (resultSet.next()) {
+                int id =   resultSet.getInt("LAST_INSERT_ID()");
+                p.setIdBoleto(id);
+                return id;
+            }else{
+                return -1;
+            }
+           
+           
+        }catch(Exception e){
+            System.out.println("Error na insercao pessoa " + e);
+            return -1;
+        }
+                
+    }
+    
+    public boolean deleteBoleto(int id){
+        String sql = "delete from  boleto where idBoleto = "+ id;
+        System.out.println("sql delete " + sql);
+        
+        try{
+            connection.createStatement().execute(sql);
+        }catch(Exception e){
+            System.out.println("Error na remocao boleto " + e);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean updateBoleto(Boleto p){
+        String sql = "update  pessoa set sacado = '" + p.getSacado()
+                + "', valor = " + p.getValor()+ " where idBoleto = " + p.getIdBoleto();
+              
+        System.out.println("sql update " + sql);
+        
+        try{
+            connection.createStatement().execute(sql);
+        }catch(Exception e){
+            System.out.println("Error na update boleto " + e);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public List<Boleto> listBoleto(){
+        List<Boleto> lista = new ArrayList<>();
+        String sql = "select * from boleto";
+        System.out.println("sql select " + sql);
+        try{
+        connection.createStatement().execute(sql);
+             ResultSet resultSet = connection.createStatement().
+                     executeQuery(sql);
+          
+         while(resultSet.next()){
+            Boleto boleto = new Boleto();
+            boleto.setIdBoleto(resultSet.getInt("idpessoa"));
+            boleto.setSacado(resultSet.getString("nome"));
+            boleto.setValor(resultSet.getInt("idade"));
+            lista.add(boleto);
+         }    
+             
+        }catch(Exception e){
+            
+        }
+        
+        return lista;
+    }
+    
+     public Boleto  buscaBoleto(int idBoleto){
+       
+        String sql = "select * from boleto where idpessoa =" + idBoleto;             ;
+        System.out.println("sql select " + sql);
+         Boleto boleto = null;
+        try{
+        connection.createStatement().execute(sql);
+             ResultSet resultSet = connection.createStatement().
+                     executeQuery(sql);
+          
+         while(resultSet.next()){
+             boleto = new Boleto();
+            boleto.setIdBoleto(resultSet.getInt("idBoleto"));
+            boleto.setSacado(resultSet.getString("sacado"));
+            boleto.setValor(resultSet.getFloat("valor"));
+            
+         }    
+             
+        }catch(Exception e){
+            
+        }
+        
+        return boleto;
+    }
 }
