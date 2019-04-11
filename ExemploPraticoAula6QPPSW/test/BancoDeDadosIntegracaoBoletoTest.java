@@ -34,11 +34,6 @@ public class BancoDeDadosIntegracaoBoletoTest {
     
     @Test
     public void testBoletoNaoPodeReceberValoresNegativos(){
-//      ValidacaoBoleto v = new ValidacaoBoleto();
-//      Boleto b = new Boleto();
-        
-//      b.setIdBoleto(1);
-//      b.setSacado("Matheus");
       b.setValor(-50);
         
         Assert.assertFalse(v.Valida(b));

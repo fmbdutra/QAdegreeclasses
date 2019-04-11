@@ -15,7 +15,8 @@ public class ValidacaoBoleto {
     public Boleto boleto;
     
     public boolean Valida(Boleto boleto)  {
-    boolean ret = false;
+    
+    boolean ret = true;
     
     if(boleto.getIdBoleto() < 0){
         ret = false;
@@ -25,7 +26,7 @@ public class ValidacaoBoleto {
         ret = false;
     }
     
-    if(boleto.getSacado().isEmpty() || boleto.getSacado().equals("") || boleto.getSacado() == ""){
+    if(boleto.getSacado().isEmpty() || boleto.getSacado().equals("")){
         ret = false;
     }
     
