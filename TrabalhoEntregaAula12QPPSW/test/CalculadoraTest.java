@@ -21,7 +21,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  *
  * @author marcelo.soares
  */
-public class SeleniumTest {
+public class CalculadoraTest {
     
     static WebDriver driver = null;     
            
